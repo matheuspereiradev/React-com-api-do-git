@@ -1,0 +1,20 @@
+
+yarn add react-router-dom
+
+
+const nomeFuncao = () => (
+    <h1></h1>
+)
+//pq o 
+function nomeFuncao (){
+    return (<h1></h1>);
+}
+
+<Switch>
+    <Route path="/" exact component={Dashboard}/>
+    <Route path="/repositorio" component={Repository}/>
+</Switch>
+
+SWITCH GARANTE QUE APENAS UMA ROTA SEJAEXIBIDA SEM ELE SE COLOCAR "/" RENDERIZA OS 2
+
+styled-component
