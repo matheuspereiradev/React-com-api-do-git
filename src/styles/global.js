@@ -8,7 +8,7 @@ export default createGlobalStyle`
     }
 
     body{
-        background:#B0C4DE url(${GitHubImage}) no-repeat 70% top;
+        background:#dcdcdc url(${GitHubImage}) no-repeat 70% top;
     }
 
     #root{
