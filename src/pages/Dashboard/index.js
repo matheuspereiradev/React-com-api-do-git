@@ -5,12 +5,22 @@ import api from '../../services/api-git'
 
 function Dashboard(){
     const[pesq,setPesq] = useState('');
+    const[erros,setErros] = useState('');
     const [repository,setRepository]=useState([]);
 
     async function lidarAddPesq(event){
         event.preventDefault();
+        if(!pesq){
+            setErros('Digite o autor/nome do repositorio');
+            return;
+        }
+        try{
         const response = await api.get(`/repos/${pesq}`);
-        console.log(response)
+        const repos = response.data;
+        setRepository([...repository,repos])
+        }catch(e){
+            setErros('Erro ao contactar com o servidor')
+        }
     }
 
     return(
@@ -21,15 +31,20 @@ function Dashboard(){
                 <input type='text' value={pesq} onChange={event=>setPesq(event.target.value)} placeholder='digite o repositorio'/>
                 <button type='submit'>Pesquisar</button>
             </Form>
+            {erros && <p>{erros}</p>}
             <Repositorios>
-            <a href="#">
-                    <img src='https://avatars0.githubusercontent.com/u/23202029?s=400&u=a911a4359169a7a1d96b86b2ab5549fad96c49eb&v=4' alt='{repository.name}' />
-                    <div>
-                    <strong>Repositorio</strong>
-                    <p>sajknsjank</p>
-                    </div>
-                </a>
-               
+                {
+                    repository.map(rep=>{
+                        return(
+                        <a key={rep.full_name} href={rep.html_url}>
+                            <img src={rep.owner.avatar_url} alt={rep.login} />
+                            <div>
+                            <strong>{rep.full_name}</strong>
+                            <p>{rep.description}</p>
+                            </div>
+                        </a>)
+                    })
+                }               
             </Repositorios>
         </>
     );
