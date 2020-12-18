@@ -1,12 +1,25 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Titulo,Form, Repositorios} from './styles'
 import Logo from '../../assets/logo.svg'
 import api from '../../services/api-git'
+import { Link } from 'react-router-dom';
 
 function Dashboard(){
     const[pesq,setPesq] = useState('');
     const[erros,setErros] = useState('');
-    const [repository,setRepository]=useState([]);
+    const [repository,setRepository]=useState(()=>{
+        const itens = localStorage.getItem('@GithubRep:repositorios')
+
+        if(itens){
+            return JSON.parse(itens)
+        }else{
+            return [];
+        }
+    });
+
+    useEffect(()=>{
+        localStorage.setItem('@GithubRep:repositorios', JSON.stringify(repository))
+    },[repository])
 
     async function lidarAddPesq(event){
         event.preventDefault();
@@ -36,13 +49,13 @@ function Dashboard(){
                 {
                     repository.map(rep=>{
                         return(
-                        <a key={rep.full_name} href={rep.html_url}>
+                        <Link key={rep.full_name} to={`/repositorio/${rep.full_name}`}>
                             <img src={rep.owner.avatar_url} alt={rep.login} />
                             <div>
                             <strong>{rep.full_name}</strong>
                             <p>{rep.description}</p>
                             </div>
-                        </a>)
+                        </Link>)
                     })
                 }               
             </Repositorios>

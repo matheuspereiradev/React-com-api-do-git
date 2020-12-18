@@ -18,3 +18,5 @@ function nomeFuncao (){
 SWITCH GARANTE QUE APENAS UMA ROTA SEJAEXIBIDA SEM ELE SE COLOCAR "/" RENDERIZA OS 2
 
 styled-component
+
+useEffect dispara açao sempre que alguma coisa mudar
