@@ -15,6 +15,8 @@ function Repository(){
             setRepo(res.data);
         })
 
+        api.post('',{},)
+
         api.get(`/repos/${params.repositorio}/issues`).then(res=>{
             setIssues(res.data);
         })
@@ -37,7 +39,7 @@ function Repository(){
                 </Cabecalho>
                 )
             }
-            {issues &&(
+            {issues ?(
                 <Repositorios>
                       {issues.map(issue=>{
                           return(
@@ -50,6 +52,8 @@ function Repository(){
                             </a>)
                       })}       
                 </Repositorios>
+                ):(
+                    <p>CARREGANDO3</p>
                 )
             }
             
