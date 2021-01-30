@@ -6,6 +6,10 @@ Projeto para conhecimento do react e consumo de API's externas
 
 React project to study use to GIT API
 
+## Link GIT API
+
+``https://api.github.com/``
+
 ![alt text](https://github.com/matheuspereiradev/React-com-api-do-git/blob/main/githubapi.jpg?raw=true)
 
 ## Available Scripts
